@@ -78,10 +78,10 @@ public class Account {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Account{");
         sb.append("id=").append(id);
-        if (this.name != null) {
+        if (name != null) {
             sb.append(", name='").append(name).append('\'');
         }
-        sb.append(", balance=").append(balance);
+        sb.append(", balance=").append(String.format("$%.2f", balance));
         sb.append('}');
         return sb.toString();
     }
