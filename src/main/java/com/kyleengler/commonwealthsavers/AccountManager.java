@@ -85,7 +85,7 @@ public class AccountManager {
 
         System.out.println("Transferring funds evenly between target accounts.");
         System.out.println("Initializing transfer...");
-        source.transferEvenly(target1, target2, target3);
+        source.transferEntireBalanceEvenly(target1, target2, target3);
 
         System.out.println("Transfer completed.");
         printAccounts(source, target1, target2, target3);
