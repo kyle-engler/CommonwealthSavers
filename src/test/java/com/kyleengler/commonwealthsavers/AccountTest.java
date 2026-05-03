@@ -27,6 +27,19 @@ class AccountTest {
         assertThrows(InsufficientBalanceException.class, () -> {
             source.transfer(99999.9, target1, target2);
         });
+        assertThrows(IllegalArgumentException.class, () -> {
+            // Account.transfer cannot be called with 0 target accounts
+            source.transfer(1.0);
+        });
+    }
+
+    @Test
+    void testTransferEvenlyErrors() {
+        Account source = new Account("source", 10000.0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            // Account.transferEvenly cannot be called with 0 target accounts
+            source.transferEvenly();
+        });
     }
 
     @Test

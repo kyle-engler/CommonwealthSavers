@@ -100,7 +100,7 @@ public class AccountManager {
         target3 = new Account("target3", 0.0);
         printAccounts(source, target1, target2, target3);
 
-        System.out.printf("Transferring $%.2f from source to each target.", transferAmount);
+        System.out.printf("Transferring $%.2f from source to each target.\n", transferAmount);
         System.out.println("Initializing transfer...");
         source.transfer(transferAmount, target1, target2, target3);
 
