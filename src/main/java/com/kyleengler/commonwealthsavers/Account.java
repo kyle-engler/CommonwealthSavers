@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class Account {
     private final String id;
-    private String name;
+    private final String name;
     // Double object has to access compareTo()
     private Double balance;
 
@@ -30,8 +30,9 @@ public class Account {
 
     /**
      * Transfer provided amount to target Account.
-     * @param amount    balance to transfer to each target account
-     * @param account  Account to receive provided funds
+     *
+     * @param amount  balance to transfer to each target account
+     * @param account Account to receive provided funds
      * @throws InsufficientBalanceException if balance is too low to make transfers
      */
     public void transfer(double amount, Account account) {
@@ -50,8 +51,9 @@ public class Account {
 
     /**
      * Transfer provided amount to each provided target account.
-     * @param amount    balance to transfer to each target account
-     * @param accounts  list of account(s) to receive provided funds
+     *
+     * @param amount   balance to transfer to each target account
+     * @param accounts list of account(s) to receive provided funds
      * @throws InsufficientBalanceException if balance is too low to make transfers
      */
     public void transfer(double amount, Account... accounts) {
@@ -72,7 +74,8 @@ public class Account {
      * Transfer entire balance of this Account to provided target account(s). If balance cannot be divided evenly between
      * accounts then put remainder in the first target account.
      * Post condition - this Account has a balance of $0.00
-     * @param accounts  account(s) to receive funds.
+     *
+     * @param accounts account(s) to receive funds.
      */
     public void transferEntireBalanceEvenly(Account... accounts) {
         if (accounts.length == 0) {
