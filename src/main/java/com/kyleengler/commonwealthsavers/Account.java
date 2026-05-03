@@ -95,9 +95,9 @@ public class Account {
             }
         }
 
-        // If funds can't be distributed completely evenly give remainder to first account
+        // Transfer any remaining funds until balance reaches 0.0
         if (getBalance() > 0.0) {
-            transfer(getBalance(), accounts[0]);
+            transferEntireBalanceEvenly(accounts);
         }
     }
 

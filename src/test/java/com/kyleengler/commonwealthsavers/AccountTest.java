@@ -72,6 +72,20 @@ class AccountTest {
         assertEquals(3333.33, target3.getBalance());
         double totalTargetBalance = target1.getBalance() + target2.getBalance() + target3.getBalance();
         assertEquals(startingSourceBalance, totalTargetBalance);
+
+        startingSourceBalance = 10000.01;
+        source = new Account("source", startingSourceBalance);
+        target1 = new Account("t1", 0.0);
+        target2 = new Account("t2", 0.0);
+        target3 = new Account("t3", 0.0);
+        source.transferEntireBalanceEvenly(target1, target2, target3);
+
+        assertEquals(0.0, source.getBalance());
+        assertEquals(3333.34, target1.getBalance());
+        assertEquals(3333.34, target2.getBalance());
+        assertEquals(3333.33, target3.getBalance());
+        totalTargetBalance = target1.getBalance() + target2.getBalance() + target3.getBalance();
+        assertEquals(startingSourceBalance, totalTargetBalance);
     }
 
     /**
