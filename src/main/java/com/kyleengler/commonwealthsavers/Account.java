@@ -28,6 +28,11 @@ public class Account {
         this.balance = balance;
     }
 
+    private boolean hasZeroBalance() {
+        // If balance is less than $0.01 it is effectively zero
+        return balance.compareTo(0.01) < 0;
+    }
+
     /**
      * Transfer provided amount to target Account.
      *
@@ -44,7 +49,7 @@ public class Account {
         account.balance += amount;
 
         // Check for rounding errors. If balance is less than 1 cent round down to 0.00
-        if (balance.compareTo(0.01) < 0) {
+        if (hasZeroBalance()) {
             balance = 0.0;
         }
     }
@@ -81,7 +86,7 @@ public class Account {
         if (accounts.length == 0) {
             throw new IllegalArgumentException("Target accounts argument cannot be empty");
         }
-        if (getBalance() == 0.0) {
+        if (hasZeroBalance()) {
             // No balance to transfer
             return;
         }
@@ -96,7 +101,7 @@ public class Account {
         }
 
         // Transfer any remaining funds until balance reaches 0.0
-        if (getBalance() > 0.0) {
+        if (!hasZeroBalance()) {
             transferEntireBalanceEvenly(accounts);
         }
     }

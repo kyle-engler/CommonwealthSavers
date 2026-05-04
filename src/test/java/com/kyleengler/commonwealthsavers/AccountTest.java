@@ -10,7 +10,7 @@ class AccountTest {
      * Test that transfer() moves given amount of money from source account to each target account
      */
     @Test
-    void testTransfer() {
+    void testTransferSpecifiedAmount() {
         Account source = new Account("source", 10000.0);
         Account target1 = new Account("t1", 0.0);
         Account target2 = new Account("t2", 0.0);
@@ -32,6 +32,7 @@ class AccountTest {
         Account target1 = new Account("t1", 0.0);
         Account target2 = new Account("t2", 0.0);
         assertThrows(InsufficientBalanceException.class, () -> {
+            // Transfer amount cannot be higher than source balance
             source.transfer(99999.9, target1, target2);
         });
         assertThrows(IllegalArgumentException.class, () -> {
@@ -123,5 +124,37 @@ class AccountTest {
         assertEquals(0.0, target1.getBalance());
         assertEquals(0.0, target2.getBalance());
         assertEquals(0.0, target3.getBalance());
+    }
+
+    /**
+     * Test transferEntireBalanceEvenly() when called on account with only $0.01
+     */
+    @Test
+    void testTransferEntireBalanceEvenlyWithOnePenny() {
+        Account source = new Account("source", 0.01);
+        Account target1 = new Account("t1", 0.0);
+        Account target2 = new Account("t2", 0.0);
+        Account target3 = new Account("t3", 0.0);
+
+        source.transferEntireBalanceEvenly(target1, target2, target3);
+
+        assertEquals(0.0, source.getBalance());
+        assertEquals(0.01, target1.getBalance());
+        assertEquals(0.0, target2.getBalance());
+        assertEquals(0.0, target3.getBalance());
+    }
+
+    /**
+     * Test transferEntireBalanceEvenly() when called with one target account
+     */
+    @Test
+    void testTransferEntireBalanceEvenlyWithOneTarget() {
+        Account source = new Account("source", 10000.0);
+        Account target1 = new Account("t1", 0.0);
+
+        source.transferEntireBalanceEvenly(target1);
+
+        assertEquals(0.0, source.getBalance());
+        assertEquals(10000.0, target1.getBalance());
     }
 }
