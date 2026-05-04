@@ -8,7 +8,6 @@ public class AccountManager {
             runDemo();
         } catch (RuntimeException e) {
             e.printStackTrace();
-            System.exit(1);
         }
     }
 
@@ -18,6 +17,13 @@ public class AccountManager {
         transferBalance(10000, 3, 100.10);
     }
 
+    /**
+     * Helper function to create a source account and transfer given amount to each target account
+     *
+     * @param sourceBalance         Starting balance for source account, must be greater than 0
+     * @param targetAccountsCount   Number of target accounts to create that will receive funds
+     * @param transferAmount        Amount to tranfer from source account to each target account
+     */
     private static void transferBalance(double sourceBalance, int targetAccountsCount, double transferAmount) {
         Account source = new Account("source", sourceBalance);
         Account[] targets = new Account[targetAccountsCount];
@@ -35,6 +41,12 @@ public class AccountManager {
         printAccounts(targets);
     }
 
+    /**
+     * Helper function to create a funding source account and transfer all funds evenly between all target accounts
+     *
+     * @param sourceBalance         Starting balance for source account, must be greater than 0
+     * @param targetAccountsCount   Number of target accounts to create that will receive funds
+     */
     private static void transferEntireBalanceEvenly(double sourceBalance, int targetAccountsCount) {
         Account source = new Account("source", sourceBalance);
         Account[] targets = new Account[targetAccountsCount];
