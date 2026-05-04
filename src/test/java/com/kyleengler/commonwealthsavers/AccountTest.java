@@ -157,4 +157,24 @@ class AccountTest {
         assertEquals(0.0, source.getBalance());
         assertEquals(10000.0, target1.getBalance());
     }
+
+    /**
+     * Test hasZeroBalance() should return true when balance is zero or less than one (1) cent
+     */
+    @Test
+    void testHasZeroBalance() {
+        Account account = new Account("source", 0.01);
+        assertFalse(account.hasZeroBalance());
+        account.setBalance(0.00);
+        assertTrue(account.hasZeroBalance());
+        account.setBalance(1000.0);
+        assertFalse(account.hasZeroBalance());
+        account.setBalance(-1000.0);
+        assertTrue(account.hasZeroBalance());
+        double balance = 10000.0;
+        double newBalance = Math.abs(balance - (balance / 3.0) - (balance / 3.0) - (balance / 3.0));
+        account.setBalance(newBalance);
+        System.out.println(account.getBalance());
+        assertTrue(account.hasZeroBalance());
+    }
 }

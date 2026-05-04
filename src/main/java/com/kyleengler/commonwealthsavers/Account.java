@@ -24,13 +24,13 @@ public class Account {
         return balance;
     }
 
-    private void setBalance(double balance) {
+    void setBalance(double balance) {
         this.balance = balance;
     }
 
-    private boolean hasZeroBalance() {
+    boolean hasZeroBalance() {
         // If balance is less than $0.01 it is effectively zero
-        return balance.compareTo(0.01) < 0;
+        return balance == 0.0 || balance.compareTo(0.01) < 0;
     }
 
     /**
